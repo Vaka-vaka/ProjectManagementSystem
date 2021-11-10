@@ -11,6 +11,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import ua.goit.console.commands.MainMenuCommand;
 
+import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.regex.Matcher;
 
 import static ua.goit.console.Command.pattern;
@@ -26,7 +28,7 @@ public class CommandHandler {
         this.activeMenu.printActiveMenu();
     }
 
-    public void handleCommand(String params) {
+    public void handleCommand(String params) throws ParseException, SQLException {
         Matcher matcher = pattern.matcher(params);
         if (matcher.find()) {
             String command = matcher.group();
