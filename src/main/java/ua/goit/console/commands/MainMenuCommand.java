@@ -11,6 +11,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import ua.goit.console.Command;
 
+import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.*;
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -29,15 +31,20 @@ public class MainMenuCommand implements Command {
         Optional<String> commandString = getCommandString(params);
         commandString.map(commands::get)
                 .ifPresent(command -> {
-                    setActive.accept(command);
-                    command.handle(params.replace(commandString.get(),
-                            "").trim(), setActive);
+                    try {
+                        setActive.accept(command);
+                        command.handle(params.replace(commandString.get(), "")
+                                .trim(), setActive);
+                    } catch (ParseException | SQLException e) {
+                        LOGGER.error("ParseException error: " + e);
+                    }
                 });
     }
 
     @Override
     public void printActiveMenu() {
-        LOGGER.info("---------Main menu----------");
+        LOGGER.info("---------------------Main menu---------------------");
+        LOGGER.info("Main commands: [main, active, exit]");
         LOGGER.info("Command list: " + this.commands.keySet());
     }
 }
