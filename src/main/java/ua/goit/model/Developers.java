@@ -15,7 +15,9 @@ public class Developers implements Identity {
     private String name;
     private Long age;
     private String gender;
+    private int salary;
 
+    @Override
     public Long getId() {
         return id;
     }
@@ -48,6 +50,14 @@ public class Developers implements Identity {
         this.gender = gender;
     }
 
+    public int getSalary() {
+        return salary;
+    }
+
+    public void setSalary(int salary) {
+        this.salary = salary;
+    }
+
     @Override
     public String toString() {
         return "Developers{" +
@@ -55,6 +65,7 @@ public class Developers implements Identity {
                 ", name='" + name + '\'' +
                 ", age=" + age +
                 ", gender='" + gender + '\'' +
+                ", salary=" + salary +
                 '}';
     }
 }
