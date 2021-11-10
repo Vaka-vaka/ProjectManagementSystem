@@ -21,10 +21,19 @@ public class MainMenuCommand implements Command {
 
     private static final Logger LOGGER = LogManager.getLogger(MainMenuCommand.class);
 
-    Map<String, Command> commands = Map.of(
-            "developers", new DevelopersCommand()
+    Map<String, Command> commands = new HashMap<>();
 
-    );
+    public MainMenuCommand() {
+        commands.put("developer", new DevelopersCommand());
+//        commands.put("customer", new CustomerCommand());
+//        commands.put("company", new CompanyCommand());
+//        commands.put("project", new ProjectCommand());
+//        commands.put("skill", new SkillCommand());
+    }
+//    Map<String, Command> commands = Map.of(
+//            "developers", new DevelopersCommand()
+//
+//    );
 
     @Override
     public void handle(String params, Consumer<Command> setActive) {
