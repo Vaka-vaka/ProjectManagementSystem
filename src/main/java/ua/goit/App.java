@@ -12,12 +12,15 @@ import org.apache.logging.log4j.Logger;
 import ua.goit.config.DbMigration;
 import ua.goit.console.CommandHandler;
 
+import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.Scanner;
 
 public class App {
+
     private static final Logger LOGGER = LogManager.getLogger(App.class);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException, ParseException {
         LOGGER.debug("Start application");
         DbMigration.migrate();
 
@@ -25,7 +28,8 @@ public class App {
         LOGGER.info("END application");
     }
 
-    public static void runMainApp() {
+    public static void runMainApp() throws SQLException, ParseException {
+
         CommandHandler commandHandler = new CommandHandler();
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNext()) {
