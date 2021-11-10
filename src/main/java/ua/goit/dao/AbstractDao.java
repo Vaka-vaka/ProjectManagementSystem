@@ -9,6 +9,7 @@ package ua.goit.dao;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import ua.goit.dao.interfaces.Dao;
 import ua.goit.dao.interfaces.Identity;
 
 import java.sql.ResultSet;
@@ -46,7 +47,7 @@ abstract class AbstractDao<T extends Identity> implements Dao<T> {
                 return Optional.empty();
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error(e);
         }
         return Optional.empty();
     }
