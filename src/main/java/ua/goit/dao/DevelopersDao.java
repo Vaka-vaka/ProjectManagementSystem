@@ -42,16 +42,18 @@ public class DevelopersDao extends AbstractDao<Developers> {
         developers.setName(resultSet.getString("name"));
         developers.setAge(resultSet.getLong("age"));
         developers.setGender(resultSet.getString("gender"));
+        developers.setSalary(resultSet.getInt("salary"));
         return developers;
     }
 
     @Override
     public Optional<Developers> create(Developers developers) {
-        String sql = "insert into developers(name, age, gender) values (?, ?, ?)";
+        String sql = "insert into developers(name, age, gender, salary) values (?, ?, ?, ?)";
         DbHelper.executeWithPreparedStatement(sql, ps -> {
             ps.setString(1, developers.getName());
             ps.setLong(2, developers.getAge());
             ps.setString(3, developers.getGender());
+            ps.setInt(4, developers.getSalary());
         });
         LOGGER.info("Record was created");
         return Optional.empty();
@@ -59,11 +61,12 @@ public class DevelopersDao extends AbstractDao<Developers> {
 
     @Override
     public void update(Developers developers) {
-        String sql = "update developers set name = ?, age = ?, gender = ? where id = ?";
+        String sql = "update developers set name = ?, age = ?, gender = ?, salary = ? where id = ?";
         DbHelper.executeWithPreparedStatement(sql, ps -> {
             ps.setString(1, developers.getName());
             ps.setLong(2, developers.getAge());
             ps.setString(3, developers.getGender());
+            ps.setInt(3, developers.getSalary());
             ps.setLong(4, developers.getId());
         });
         LOGGER.info("Record was updated");
