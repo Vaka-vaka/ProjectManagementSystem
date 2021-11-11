@@ -30,10 +30,6 @@ public class MainMenuCommand implements Command {
 //        commands.put("project", new ProjectCommand());
 //        commands.put("skill", new SkillCommand());
     }
-//    Map<String, Command> commands = Map.of(
-//            "developers", new DevelopersCommand()
-//
-//    );
 
     @Override
     public void handle(String params, Consumer<Command> setActive) {

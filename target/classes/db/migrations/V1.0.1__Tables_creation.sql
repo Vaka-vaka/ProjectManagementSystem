@@ -5,32 +5,31 @@ create table Developers (
 	gender varchar(50) not null
 );
 
-
-create table Skills(
+CREATE TABLE Skills (
 	id serial PRIMARY KEY,
 	language varchar(250) not null,
 	level_skills varchar(64) not null
 );
 
-create table Projects(
+CREATE TABLE Projects (
 	id serial PRIMARY KEY,
 	name varchar(250) not null,
 	language varchar(150) not null
 );
 
-create table Companies(
+CREATE TABLE Companies (
 	id serial PRIMARY KEY,
 	name varchar(250) not null,
 	city varchar(150) not null
 );
 
-create table Customers(
+CREATE TABLE Customers (
 	id serial PRIMARY KEY,
 	name varchar(64) not null,
 	city varchar(100) not null
 );
 
-create table developers_to_skills(
+CREATE TABLE developers_skills (
 	dev_id integer not null,
 	skills_id integer not null,
 
@@ -38,7 +37,7 @@ create table developers_to_skills(
 	constraint skills_id_fk foreign key(skills_id) references Skills(id)
 );
 
-create table developers_to_projects(
+CREATE TABLE developers_projects (
 	dev_id integer not null,
 	projects_id integer not null,
 
@@ -46,7 +45,7 @@ create table developers_to_projects(
 	constraint projects_id_fk foreign key(projects_id) references Projects(id)
 );
 
-create table companies_to_projects(
+CREATE TABLE companies_projects (
 	companies_id integer not null,
 	projects_id integer not null,
 
@@ -54,7 +53,7 @@ create table companies_to_projects(
 	constraint projects_id_fk foreign key(projects_id) references Projects(id)
 );
 
-create table customers_to_projects(
+CREATE TABLE customers_projects (
 	customers_id integer not null,
 	projects_id integer not null,
 

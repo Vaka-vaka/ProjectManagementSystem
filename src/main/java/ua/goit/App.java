@@ -9,7 +9,7 @@ package ua.goit;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import ua.goit.config.DbMigration;
+import ua.goit.config.DbMigrations;
 import ua.goit.console.CommandHandler;
 
 import java.sql.SQLException;
@@ -22,7 +22,7 @@ public class App {
 
     public static void main(String[] args) throws SQLException, ParseException {
         LOGGER.debug("Start application");
-        DbMigration.migrate();
+        DbMigrations.migrate();
 
         runMainApp();
         LOGGER.info("END application");
