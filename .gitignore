@@ -54,3 +54,8 @@ src/.idea/workspace.xml
 .idea/libraries/Maven__org_postgresql_postgresql_42_3_1.xml
 .idea/libraries/Maven__junit_junit_4_13_2.xml
 Module4_JDBC.iml
+target/classes/db/migration/V1.0.0__Tables_creation.sql
+target/classes/db/migration/V1.0.1__Population_of_tables.sql
+target/classes/db/migration/V1.0.2__Adding_cost_to_projects.sql
+target/classes/db/migration/V1.0.3__Adding_salary_to_developers.sql
+target/classes/db/migration/V1.0.4__Adding_creation_time_to_projects.sql
