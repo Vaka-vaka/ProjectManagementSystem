@@ -41,7 +41,7 @@ public class DevelopersCommand implements Command{
 
     private void getAll() {
         List<Developers> all = developersDao.getAll();
-        System.out.println("Returned "+ all.size() + " developers");
+        System.out.println("Returned "+ all.size() + "developers");
         for (Developers developers : all) {
             System.out.println(developers);
         }
