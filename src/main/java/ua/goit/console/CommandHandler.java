@@ -7,10 +7,7 @@
 
 package ua.goit.console;
 
-import ua.goit.console.commands.DevelopersCommand;
-import ua.goit.console.commands.ProjectsCommand;
-import ua.goit.console.commands.SkillsCommand;
-import ua.goit.console.commands.UsersCommand;
+import ua.goit.console.commands.*;
 
 import java.text.ParseException;
 import java.util.*;
@@ -24,6 +21,7 @@ public class CommandHandler {
         commandMap.put("developers", new DevelopersCommand());
         commandMap.put("skills", new SkillsCommand());
         commandMap.put("projects", new ProjectsCommand());
+        commandMap.put("companies", new CompaniesCommand());
 
     }
 
