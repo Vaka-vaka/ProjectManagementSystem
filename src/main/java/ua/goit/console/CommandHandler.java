@@ -8,10 +8,9 @@
 package ua.goit.console;
 
 import ua.goit.console.commands.DevelopersCommand;
+import ua.goit.console.commands.SkillsCommand;
 import ua.goit.console.commands.UsersCommand;
-
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class CommandHandler {
 
@@ -20,6 +19,7 @@ public class CommandHandler {
     public CommandHandler() {
         commandMap.put("users", new UsersCommand());
         commandMap.put("developers", new DevelopersCommand());
+        commandMap.put("skills", new SkillsCommand());
 
     }
 
