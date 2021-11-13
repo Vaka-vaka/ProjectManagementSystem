@@ -8,11 +8,13 @@
 package ua.goit;
 
 import ua.goit.console.CommandHandler;
+
+import java.text.ParseException;
 import java.util.*;
 
 public class Main {
 
-        public static void main (String[]args){
+        public static void main (String[]args) throws ParseException {
 
             System.out.println("Start application");
             CommandHandler commandHandler = new CommandHandler();
