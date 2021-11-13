@@ -1,5 +1,5 @@
 /**
- * JavaDeveloper3. Module 4. JDBC
+ * ProjectManagementSystem. Module 4. JDBC
  *
  * @autor Valentin Mozul
  * @version of 08.11.2021
@@ -7,7 +7,6 @@
 
 package ua.goit.console;
 
-import ua.goit.console.commands.CategoryCommand;
 import ua.goit.console.commands.DevelopersCommand;
 import ua.goit.console.commands.UsersCommand;
 
@@ -20,7 +19,6 @@ public class CommandHandler {
 
     public CommandHandler() {
         commandMap.put("users", new UsersCommand());
-        commandMap.put("category", new CategoryCommand());
         commandMap.put("developers", new DevelopersCommand());
 
     }
