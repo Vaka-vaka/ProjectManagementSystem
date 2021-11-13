@@ -29,10 +29,11 @@ public class SkillsDao extends AbstractDao<Skills> {
 
     @Override
     public Optional<Skills> create(Skills entity) {
-        String sql = "insert into skills(language, level_skills) values (?, ?)";
+        String sql = "insert into skills(id, language, level_skills) values (?, ?, ?)";
         int count = DbHelper.executeWithPreparedStatement(sql, ps -> {
-            ps.setString(1, entity.getLanguage());
-            ps.setString(2, entity.getLevel_skills());
+            ps.setLong(1, entity.getId());
+            ps.setString(2, entity.getLanguage());
+            ps.setString(3, entity.getLevel_skills());
         });
         System.out.println("Created " + count + " records");
         return Optional.empty();
