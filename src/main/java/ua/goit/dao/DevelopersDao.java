@@ -1,5 +1,5 @@
 /**
- * JavaDeveloper3. Module 4. JDBC
+ * ProjectManagementSystem. Module 4. JDBC
  *
  * @autor Valentin Mozul
  * @version of 12.11.2021
@@ -8,10 +8,11 @@
 package ua.goit.dao;
 
 import ua.goit.model.Developers;
+
 import java.sql.*;
 import java.util.*;
 
-public class DevelopersDao extends AbstractDao<Developers>{
+public class DevelopersDao extends AbstractDao<Developers> {
 
     @Override
     String getTableName() {
@@ -31,12 +32,13 @@ public class DevelopersDao extends AbstractDao<Developers>{
 
     @Override
     public Optional<Developers> create(Developers entity) {
-        String sql = "insert into developers(name_, age, gender, salary) values (?, ?, ?, ?)";
+        String sql = "insert into developers(id, name_, age, gender, salary) values (?, ?, ?, ?, ?)";
         int count = DbHelper.executeWithPreparedStatement(sql, ps -> {
-            ps.setString(1, entity.getName_());
-            ps.setLong(2, entity.getAge());
-            ps.setString(3, entity.getGender());
-            ps.setInt(4, entity.getSalary());
+            ps.setLong(1, entity.getId());
+            ps.setString(2, entity.getName_());
+            ps.setLong(3, entity.getAge());
+            ps.setString(4, entity.getGender());
+            ps.setInt(5, entity.getSalary());
         });
         System.out.println("Created " + count + " records");
         return Optional.empty();
@@ -49,9 +51,9 @@ public class DevelopersDao extends AbstractDao<Developers>{
         int count = DbHelper.executeWithPreparedStatement(sql, ps -> {
             ps.setString(1, entity.getName_());
             ps.setLong(2, entity.getAge());
-            ps.setString(1, entity.getGender());
-            ps.setInt(2, entity.getSalary());
-            ps.setLong(3, entity.getId());
+            ps.setString(3, entity.getGender());
+            ps.setInt(4, entity.getSalary());
+            ps.setLong(5, entity.getId());
         });
         System.out.println("Updated " + count + " records");
     }
