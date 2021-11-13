@@ -8,8 +8,11 @@
 package ua.goit.console;
 
 import ua.goit.console.commands.DevelopersCommand;
+import ua.goit.console.commands.ProjectsCommand;
 import ua.goit.console.commands.SkillsCommand;
 import ua.goit.console.commands.UsersCommand;
+
+import java.text.ParseException;
 import java.util.*;
 
 public class CommandHandler {
@@ -20,10 +23,11 @@ public class CommandHandler {
         commandMap.put("users", new UsersCommand());
         commandMap.put("developers", new DevelopersCommand());
         commandMap.put("skills", new SkillsCommand());
+        commandMap.put("projects", new ProjectsCommand());
 
     }
 
-    public void handleCommand(String params) {
+    public void handleCommand(String params) throws ParseException {
         int firstSpace = params.indexOf(" ");
         if (firstSpace > -1) {
             Command command = commandMap
