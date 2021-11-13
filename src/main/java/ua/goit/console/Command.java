@@ -7,7 +7,9 @@
 
 package ua.goit.console;
 
+import java.text.ParseException;
+
 public interface Command {
 
-    void handle(String params);
+    void handle(String params) throws ParseException;
 }
