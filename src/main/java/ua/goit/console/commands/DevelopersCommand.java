@@ -1,5 +1,5 @@
 /**
- * JavaDeveloper3. Module 4. JDBC
+ * ProjectManagementSystem. Module 4. JDBC
  *
  * @autor Valentin Mozul
  * @version of 12.11.2021
@@ -10,6 +10,7 @@ package ua.goit.console.commands;
 import ua.goit.console.Command;
 import ua.goit.dao.DevelopersDao;
 import ua.goit.model.Developers;
+
 import java.util.*;
 
 
@@ -24,15 +25,20 @@ public class DevelopersCommand implements Command {
                 , params.replace(paramsArray[0] + " ", ""));
         switch (paramsArray[0]) {
             case "create":
-                create(subParams);break;
+                create(subParams);
+                break;
             case "get":
-                get(subParams);break;
+                get(subParams);
+                break;
             case "getAll":
-                getAll();break;
+                getAll();
+                break;
             case "delete":
-                delete(subParams);break;
+                delete(subParams);
+                break;
             case "update":
-                update(subParams);break;
+                update(subParams);
+                break;
         }
     }
 
@@ -44,47 +50,61 @@ public class DevelopersCommand implements Command {
         }
     }
 
-    private void update(String params) { // user update ID NAME DESCRIPTION
-//        String[] paramsArray = params.split(" ");
-//        Optional<User> optionalUser = userDao
-//                .get(Long.parseLong(paramsArray[0]));
-//        if (optionalUser.isPresent()) {
-//            User user = optionalUser.get();
-//            user.setName(paramsArray[1]);
-//            user.setDescription(paramsArray[2]);
-//            userDao.update(user);
-//        } else {
-//            System.out.println("User with id " + paramsArray[0] + " not found");
-//        }
+    private void update(String params) { // developer update ID NAME_ AGE GENDER SALARY
+        String[] paramsArray = params.split(" ");
+        Optional<Developers> optionalDevelopers = developersDao
+                .get(Long.parseLong(paramsArray[0]));
+        if (optionalDevelopers.isPresent()) {
+            Developers developers = optionalDevelopers.get();
+            developers.setName_(paramsArray[1]);
+            developers.setAge(Long.parseLong(paramsArray[2]));
+            developers.setGender(paramsArray[3]);
+            developers.setSalary(Integer.parseInt(paramsArray[4]));
+            developersDao.update(developers);
+        } else {
+            System.out.println("User with id " + paramsArray[0] + " not found");
+        }
     }
 
-    private void create(String params) { //users create Name DESCRIPTION
-//        String[] paramsArray = params.split(" ");
-//        User user = new User();
-//        user.setName(paramsArray[0]);
-//        user.setDescription(paramsArray[1]);
-//        userDao.create(user);
+    private void create(String params) { //developers create ID NAME_ AGE GENDER SALARY
+        /** без ID не виходить, кидає помилку сама база SQL
+        * (Error [23505]: ПОМИЛКА: повторювані значення ключа порушують обмеження унікальності "developers_pkey"
+        *  Подробности: Ключ (id)=(1) вже існує.
+        *  ПОМИЛКА: повторювані значення ключа порушують обмеження унікальності "developers_pkey"
+        *  Подробности: Ключ (id)=(1) вже існує.
+        *  ПОМИЛКА: повторювані значення ключа порушують обмеження унікальності "developers_pkey"
+        *  Подробности: Ключ (id)=(1) вже існує.)
+        *автоматично не може призначить ID
+         */
+        String[] paramsArray = params.split(" ");
+        Developers developers = new Developers();
+        developers.setId(Long.parseLong(paramsArray[0]));
+        developers.setName_(paramsArray[1]);
+        developers.setAge(Long.parseLong(paramsArray[2]));
+        developers.setGender(paramsArray[3]);
+        developers.setSalary(Integer.parseInt(paramsArray[4]));
+        developersDao.create(developers);
     }
 
-    private void get(String params) { //users get 1
-//        String[] paramsArray = params.split(" ");
-//        Optional<User> user = userDao
-//                .get(Long.parseLong(paramsArray[0]));
-//        if (user.isPresent()) {
-//            System.out.println(user.get());
-//        } else {
-//            System.out.println("User with id " + paramsArray[0] + " not found");
-//        }
+    private void get(String params) { //developers get id
+        String[] paramsArray = params.split(" ");
+        Optional<Developers> developers = developersDao
+                .get(Long.parseLong(paramsArray[0]));
+        if (developers.isPresent()) {
+            System.out.println(developers.get());
+        } else {
+            System.out.println("User with id " + paramsArray[0] + " not found");
+        }
     }
 
-    private void delete(String params) {
-//        String[] paramsArray = params.split(" ");
-//        Optional<User> user = userDao
-//                .get(Long.parseLong(paramsArray[0]));
-//        if (user.isPresent()) {
-//            userDao.delete(user.get());
-//        } else {
-//            System.out.println("User with id " + paramsArray[0] + " not found");
-//        }
+    private void delete(String params) { //developers delete id
+        String[] paramsArray = params.split(" ");
+        Optional<Developers> developers = developersDao
+                .get(Long.parseLong(paramsArray[0]));
+        if (developers.isPresent()) {
+            developersDao.delete(developers.get());
+        } else {
+            System.out.println("User with id " + paramsArray[0] + " not found");
+        }
     }
 }
