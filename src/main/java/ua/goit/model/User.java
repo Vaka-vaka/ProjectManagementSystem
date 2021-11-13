@@ -10,7 +10,8 @@ package ua.goit.model;
 import ua.goit.dao.Identity;
 
 public class User implements Identity {
-    private long id;
+
+    private Long id;
     private String name;
     private String description;
 
