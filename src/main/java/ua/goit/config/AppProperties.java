@@ -1,5 +1,5 @@
 /**
- * JavaDeveloper3. Module 4. JDBC
+ * ProjectManagementSystem. Module 4. JDBC
  *
  * @autor Valentin Mozul
  * @version of 04.11.2021
