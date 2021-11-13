@@ -17,12 +17,11 @@ public class CommandHandler {
     Map<String, Command> commandMap = new HashMap<>();
 
     public CommandHandler() {
-        commandMap.put("users", new UsersCommand());
         commandMap.put("developers", new DevelopersCommand());
         commandMap.put("skills", new SkillsCommand());
         commandMap.put("projects", new ProjectsCommand());
         commandMap.put("companies", new CompaniesCommand());
-
+        commandMap.put("customers", new CustomersCommand());
     }
 
     public void handleCommand(String params) throws ParseException {
