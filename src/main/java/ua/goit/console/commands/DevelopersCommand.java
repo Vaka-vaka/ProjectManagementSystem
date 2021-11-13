@@ -93,7 +93,7 @@ public class DevelopersCommand implements Command {
         if (developers.isPresent()) {
             System.out.println(developers.get());
         } else {
-            System.out.println("User with id " + paramsArray[0] + " not found");
+            System.out.println("Developers with id " + paramsArray[0] + " not found");
         }
     }
 
@@ -104,7 +104,7 @@ public class DevelopersCommand implements Command {
         if (developers.isPresent()) {
             developersDao.delete(developers.get());
         } else {
-            System.out.println("User with id " + paramsArray[0] + " not found");
+            System.out.println("Developers with id " + paramsArray[0] + " not found");
         }
     }
 }
