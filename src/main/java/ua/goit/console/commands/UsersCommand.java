@@ -64,7 +64,7 @@ public class UsersCommand implements Command {
         User user = new User();
         user.setName(paramsArray[0]);
         user.setDescription(paramsArray[1]);
-        userDao.create(user);
+         userDao.create(user);
     }
 
     private void get(String params) { //users get 1
