@@ -18,7 +18,6 @@ public class CompaniesCommand implements Command {
 
     private final CompaniesDao companiesDao = new CompaniesDao();
 
-
     @Override
     public void handle(String params) throws ParseException {
         String[] paramsArray = params.split(" ");
