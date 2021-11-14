@@ -7,9 +7,10 @@
 
 package ua.goit.console;
 
+import java.sql.SQLException;
 import java.text.ParseException;
 
 public interface Command {
 
-    void handle(String params) throws ParseException;
+    void handle(String params) throws ParseException, SQLException;
 }
