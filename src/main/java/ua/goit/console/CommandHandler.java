@@ -9,6 +9,7 @@ package ua.goit.console;
 
 import ua.goit.console.commands.*;
 
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.*;
 
@@ -22,9 +23,10 @@ public class CommandHandler {
         commandMap.put("projects", new ProjectsCommand());
         commandMap.put("companies", new CompaniesCommand());
         commandMap.put("customers", new CustomersCommand());
+        commandMap.put("javaDevelopers", new HomeWork());
     }
 
-    public void handleCommand(String params) throws ParseException {
+    public void handleCommand(String params) throws ParseException, SQLException {
         int firstSpace = params.indexOf(" ");
         if (firstSpace > -1) {
             Command command = commandMap
