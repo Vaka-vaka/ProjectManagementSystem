@@ -24,6 +24,7 @@ public class CommandHandler {
         commandMap.put("companies", new CompaniesCommand());
         commandMap.put("customers", new CustomersCommand());
         commandMap.put("javaDevelopers", new HomeWork());
+        commandMap.put("middleDevelopers", new HomeWork());
     }
 
     public void handleCommand(String params) throws ParseException, SQLException {
