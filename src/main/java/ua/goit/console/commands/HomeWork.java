@@ -10,9 +10,7 @@ package ua.goit.console.commands;
 import ua.goit.config.DataSourceHolder;
 import ua.goit.console.Command;
 import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class HomeWork implements Command {
 
@@ -21,13 +19,12 @@ public class HomeWork implements Command {
         String[] paramsArray = params.split(" ");
         String subParams = String.join(" "
                 , params.replace(paramsArray[0] + " ", ""));
-        if ("getJavaDevelopers".equals(paramsArray[0])) {
-            getJavaDevelopers();
+        if ("javaDevelopers".equals(paramsArray[0])) {
+            javaDevelopers();
         }
     }
 
-    public static void getJavaDevelopers() throws SQLException {
-
+    public static void javaDevelopers() throws SQLException {
         Connection connection = DataSourceHolder.getDataSource().getConnection();
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery("select * from list_java_developers;");
@@ -36,4 +33,6 @@ public class HomeWork implements Command {
         }
         connection.close();
     }
+
+    
 }
