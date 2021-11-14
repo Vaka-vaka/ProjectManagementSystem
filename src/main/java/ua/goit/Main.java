@@ -8,13 +8,13 @@
 package ua.goit;
 
 import ua.goit.console.CommandHandler;
-
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.*;
 
 public class Main {
 
-        public static void main (String[]args) throws ParseException {
+        public static void main (String[]args) throws ParseException, SQLException {
 
             System.out.println("Start application");
             CommandHandler commandHandler = new CommandHandler();
@@ -22,6 +22,7 @@ public class Main {
             while (scanner.hasNext()) {
                 commandHandler.handleCommand(scanner.nextLine());
             }
+
             System.out.println("And application");
         }
     }
