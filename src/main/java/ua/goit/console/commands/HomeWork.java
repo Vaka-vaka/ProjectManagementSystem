@@ -9,7 +9,6 @@ package ua.goit.console.commands;
 
 import ua.goit.config.DataSourceHolder;
 import ua.goit.console.Command;
-
 import java.sql.Connection;
 import java.sql.*;
 
@@ -39,7 +38,7 @@ public class HomeWork implements Command {
         }
     }
 
-    private void getSumProjectSalary() throws SQLException { //sum salary
+    private void getSumProjectSalary() throws SQLException {
         Connection connection = DataSourceHolder.getDataSource().getConnection();
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement
@@ -52,7 +51,7 @@ public class HomeWork implements Command {
         connection.close();
     }
 
-    private void getListDevelopersProject() throws SQLException { // developer project
+    private void getListDevelopersProject() throws SQLException {
         Connection connection = DataSourceHolder.getDataSource().getConnection();
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement
@@ -69,7 +68,7 @@ public class HomeWork implements Command {
         connection.close();
     }
 
-    private static void getJavaDevelopers() throws SQLException { //java developers
+    private static void getJavaDevelopers() throws SQLException {
         Connection connection = DataSourceHolder.getDataSource().getConnection();
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery("select * from list_java_developers;");
@@ -79,7 +78,7 @@ public class HomeWork implements Command {
         connection.close();
     }
 
-    private static void getMiddleDevelopers() throws SQLException { //middle developer
+    private static void getMiddleDevelopers() throws SQLException {
         Connection connection = DataSourceHolder.getDataSource().getConnection();
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery("select * from  list_middleDevelopers;");
@@ -89,7 +88,7 @@ public class HomeWork implements Command {
         connection.close();
     }
 
-    private void getListDevelopers() throws SQLException { // list go
+    private void getListDevelopers() throws SQLException {
         Connection connection = DataSourceHolder.getDataSource().getConnection();
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement
