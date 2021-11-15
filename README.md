@@ -1,3 +1,3 @@
 # ProjectManagementSystem
  
-class DbMigration на доопрацюванні. Дороблю потім запушу
+class DbMigration та LOGGER на доопрацюванні. Дороблю потім запушу
