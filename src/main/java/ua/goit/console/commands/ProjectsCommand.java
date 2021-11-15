@@ -52,7 +52,6 @@ public class ProjectsCommand implements Command {
         }
     }
 
-    // projects update ID NAME_ language cost creation_date
     private void update(String params) throws ParseException {
         String[] paramsArray = params.split(" ");
         Optional<Projects> optionalProjects = projectsDao
@@ -69,7 +68,6 @@ public class ProjectsCommand implements Command {
         }
     }
 
-    // projects create ID NAME_ language cost creation_date
     private void create(String params) throws ParseException {
         String[] paramsArray = params.split(" ");
         Projects projects = new Projects();
@@ -81,7 +79,7 @@ public class ProjectsCommand implements Command {
         projectsDao.create(projects);
     }
 
-    private void get(String params) { //projects get id
+    private void get(String params) {
         String[] paramsArray = params.split(" ");
         Optional<Projects> projects = projectsDao
                 .get(Long.parseLong(paramsArray[0]));
@@ -92,7 +90,7 @@ public class ProjectsCommand implements Command {
         }
     }
 
-    private void delete(String params) { //projects delete id
+    private void delete(String params) {
         String[] paramsArray = params.split(" ");
         Optional<Projects> projects = projectsDao
                 .get(Long.parseLong(paramsArray[0]));
