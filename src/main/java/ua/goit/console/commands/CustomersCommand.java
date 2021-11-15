@@ -11,7 +11,6 @@ import ua.goit.console.Command;
 import ua.goit.dao.CustomersDao;
 import ua.goit.model.Customers;
 
-import java.text.ParseException;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,7 +19,7 @@ public class CustomersCommand implements Command {
     private final CustomersDao customersDao = new CustomersDao();
 
     @Override
-    public void handle(String params) throws ParseException {
+    public void handle(String params) {
         String[] paramsArray = params.split(" ");
         String subParams = String.join(" "
                 , params.replace(paramsArray[0] + " ", ""));
@@ -51,8 +50,7 @@ public class CustomersCommand implements Command {
         }
     }
 
-    // customers update ID NAME_ city
-    private void update(String params) throws ParseException {
+    private void update(String params) {
         String[] paramsArray = params.split(" ");
         Optional<Customers> optionalCustomers = customersDao
                 .get(Long.parseLong(paramsArray[0]));
@@ -66,8 +64,7 @@ public class CustomersCommand implements Command {
         }
     }
 
-    // customers create ID NAME_ city
-    private void create(String params) throws ParseException {
+    private void create(String params) {
         String[] paramsArray = params.split(" ");
         Customers customers = new Customers();
         customers.setId(Long.parseLong(paramsArray[0]));
@@ -76,7 +73,7 @@ public class CustomersCommand implements Command {
         customersDao.create(customers);
     }
 
-    private void get(String params) { //customers get id
+    private void get(String params) {
         String[] paramsArray = params.split(" ");
         Optional<Customers> customers = customersDao
                 .get(Long.parseLong(paramsArray[0]));
@@ -87,7 +84,7 @@ public class CustomersCommand implements Command {
         }
     }
 
-    private void delete(String params) { //customers delete id
+    private void delete(String params) {
         String[] paramsArray = params.split(" ");
         Optional<Customers> customers = customersDao
                 .get(Long.parseLong(paramsArray[0]));
