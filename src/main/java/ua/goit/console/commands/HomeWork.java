@@ -20,14 +20,29 @@ public class HomeWork implements Command {
         String subParams = String.join(" "
                 , params.replace(paramsArray[0] + " ", ""));
         switch (paramsArray[0]) {
-            case "javaDevelopers" : javaDevelopers();
+            case "salary" : getSumProjectSalary();
+                break;
+            case "developers" : getJavaDevelopers();
             break;
-            case "middleDevelopers" : middleDevelopers();
+            case "developer" : getMiddleDevelopers();
             break;
         }
     }
 
-    private static void javaDevelopers() throws SQLException {
+    private void getSumProjectSalary() throws SQLException { //sum salary
+        Connection connection = DataSourceHolder.getDataSource().getConnection();
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement
+                .executeQuery("select * from sum_salary_developers_project;");
+
+        while (resultSet.next()) {
+            System.out.println("Project name: " + resultSet.getString(1) +
+                    " ; " + "Sum salary developer: " + resultSet.getString(2));
+        }
+        connection.close();
+    }
+
+    private static void getJavaDevelopers() throws SQLException { //java developers
         Connection connection = DataSourceHolder.getDataSource().getConnection();
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery("select * from list_java_developers;");
@@ -37,7 +52,7 @@ public class HomeWork implements Command {
         connection.close();
     }
 
-    private static void middleDevelopers() throws SQLException {
+    private static void getMiddleDevelopers() throws SQLException { //middle developer
         Connection connection = DataSourceHolder.getDataSource().getConnection();
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery("select * from  list_middleDevelopers;");
@@ -46,5 +61,6 @@ public class HomeWork implements Command {
         }
         connection.close();
     }
+
 
 }
