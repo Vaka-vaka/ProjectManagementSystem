@@ -61,3 +61,4 @@ target/classes/db/migration/V1.0.3__Adding_salary_to_developers.sql
 target/classes/db/migration/V1.0.4__Adding_creation_time_to_projects.sql
 target/classes/db/migration/V1.0.5__Adding_creation_view_to_list_middleDevelopers.sql
 src/main/java/ua/goit/console/commands/PrintInfoCommand.java
+target/classes/db/migration/sum_salary_developers_project.sql
