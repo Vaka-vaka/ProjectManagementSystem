@@ -50,7 +50,7 @@ public class DevelopersCommand implements Command {
         }
     }
 
-    private void update(String params) { // developer update ID NAME_ AGE GENDER SALARY
+    private void update(String params) {
         String[] paramsArray = params.split(" ");
         Optional<Developers> optionalDevelopers = developersDao
                 .get(Long.parseLong(paramsArray[0]));
@@ -66,7 +66,7 @@ public class DevelopersCommand implements Command {
         }
     }
 
-    private void create(String params) { //developers create ID NAME_ AGE GENDER SALARY
+    private void create(String params) {
         /** без ID не виходить, кидає помилку сама база SQL
         * (Error [23505]: ПОМИЛКА: повторювані значення ключа порушують обмеження унікальності "developers_pkey"
         *  Подробности: Ключ (id)=(1) вже існує.
@@ -86,7 +86,7 @@ public class DevelopersCommand implements Command {
         developersDao.create(developers);
     }
 
-    private void get(String params) { //developers get id
+    private void get(String params) {
         String[] paramsArray = params.split(" ");
         Optional<Developers> developers = developersDao
                 .get(Long.parseLong(paramsArray[0]));
@@ -97,7 +97,7 @@ public class DevelopersCommand implements Command {
         }
     }
 
-    private void delete(String params) { //developers delete id
+    private void delete(String params) {
         String[] paramsArray = params.split(" ");
         Optional<Developers> developers = developersDao
                 .get(Long.parseLong(paramsArray[0]));
