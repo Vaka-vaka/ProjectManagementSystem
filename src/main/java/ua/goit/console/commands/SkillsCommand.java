@@ -49,7 +49,7 @@ public class SkillsCommand implements Command {
         }
     }
 
-    private void update(String params) { // skills update ID NAME AGE GENDER SALARY
+    private void update(String params) {
         String[] paramsArray = params.split(" ");
         Optional<Skills> optionalSkills = skillsDao
                 .get(Long.parseLong(paramsArray[0]));
@@ -63,7 +63,7 @@ public class SkillsCommand implements Command {
         }
     }
 
-    private void create(String params) { //skills create ID Language Level_skills
+    private void create(String params) {
         String[] paramsArray = params.split(" ");
         Skills skills = new Skills();
         skills.setId(Long.parseLong(paramsArray[0]));
@@ -72,7 +72,7 @@ public class SkillsCommand implements Command {
         skillsDao.create(skills);
     }
 
-    private void get(String params) { //skills get id
+    private void get(String params) {
         String[] paramsArray = params.split(" ");
         Optional<Skills> skills = skillsDao
                 .get(Long.parseLong(paramsArray[0]));
@@ -83,7 +83,7 @@ public class SkillsCommand implements Command {
         }
     }
 
-    private void delete(String params) { //skills delete id
+    private void delete(String params) {
         String[] paramsArray = params.split(" ");
         Optional<Skills> skills = skillsDao
                 .get(Long.parseLong(paramsArray[0]));
