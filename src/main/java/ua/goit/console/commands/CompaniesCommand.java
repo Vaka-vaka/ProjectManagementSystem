@@ -10,7 +10,7 @@ package ua.goit.console.commands;
 import ua.goit.console.Command;
 import ua.goit.dao.CompaniesDao;
 import ua.goit.model.Companies;
-import java.text.ParseException;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -19,7 +19,7 @@ public class CompaniesCommand implements Command {
     private final CompaniesDao companiesDao = new CompaniesDao();
 
     @Override
-    public void handle(String params) throws ParseException {
+    public void handle(String params) {
         String[] paramsArray = params.split(" ");
         String subParams = String.join(" "
                 , params.replace(paramsArray[0] + " ", ""));
@@ -50,8 +50,7 @@ public class CompaniesCommand implements Command {
         }
     }
 
-    // companies update ID NAME_ city
-    private void update(String params) throws ParseException {
+    private void update(String params) {
         String[] paramsArray = params.split(" ");
         Optional<Companies> optionalCompanies = companiesDao
                 .get(Long.parseLong(paramsArray[0]));
@@ -65,8 +64,7 @@ public class CompaniesCommand implements Command {
         }
     }
 
-    // companies create ID NAME_ city
-    private void create(String params) throws ParseException {
+    private void create(String params) {
         String[] paramsArray = params.split(" ");
         Companies companies = new Companies();
         companies.setId(Long.parseLong(paramsArray[0]));
@@ -75,7 +73,7 @@ public class CompaniesCommand implements Command {
         companiesDao.create(companies);
     }
 
-    private void get(String params) { //companies get id
+    private void get(String params) {
         String[] paramsArray = params.split(" ");
         Optional<Companies> companies = companiesDao
                 .get(Long.parseLong(paramsArray[0]));
@@ -86,7 +84,7 @@ public class CompaniesCommand implements Command {
         }
     }
 
-    private void delete(String params) { //companies delete id
+    private void delete(String params) {
         String[] paramsArray = params.split(" ");
         Optional<Companies> companies = companiesDao
                 .get(Long.parseLong(paramsArray[0]));
