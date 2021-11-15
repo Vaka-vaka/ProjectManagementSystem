@@ -26,7 +26,8 @@ public class CommandHandler {
         commandMap.put("java", new HomeWork());
         commandMap.put("middle", new HomeWork());
         commandMap.put("sum", new HomeWork());
-
+        commandMap.put("developer", new HomeWork());
+        commandMap.put("list", new HomeWork());
     }
 
     public void handleCommand(String params) throws ParseException, SQLException {
@@ -43,5 +44,4 @@ public class CommandHandler {
             System.out.println("Unknown command");
         }
     }
-
 }
