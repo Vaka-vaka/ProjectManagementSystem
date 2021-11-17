@@ -7,41 +7,44 @@
 
 package ua.goit.console;
 
-import ua.goit.console.commands.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.util.*;
+import java.util.regex.Matcher;
 
 public class CommandHandler {
 
-    Map<String, Command> commandMap = new HashMap<>();
+    private static final Logger LOGGER = LogManager.getLogger(CommandHandler.class);
+
+    Command mainMenu = new MainMenuCommand();
+    Command activeMenu = mainMenu;
 
     public CommandHandler() {
-        commandMap.put("developers", new DevelopersCommand());
-        commandMap.put("skills", new SkillsCommand());
-        commandMap.put("projects", new ProjectsCommand());
-        commandMap.put("companies", new CompaniesCommand());
-        commandMap.put("customers", new CustomersCommand());
-        commandMap.put("java", new HomeWork());
-        commandMap.put("middle", new HomeWork());
-        commandMap.put("sum", new HomeWork());
-        commandMap.put("developer", new HomeWork());
-        commandMap.put("list", new HomeWork());
+        this.activeMenu.printActiveMenu();
     }
 
     public void handleCommand(String params) throws ParseException, SQLException {
-        int firstSpace = params.indexOf(" ");
-        if (firstSpace > -1) {
-            Command command = commandMap
-                    .get(params.substring(0, firstSpace));
-            if(command != null) {
-                command.handle(params.substring(firstSpace + 1));
-            }else {
-                System.out.println("Unknown command");
+
+        Matcher matcher = Command.pattern.matcher(params);
+        if (matcher.find()) {
+            String command = matcher.group();
+            if ("exit".equalsIgnoreCase(command)) {
+                System.exit(0);
+            } else if ("active".equalsIgnoreCase(command)) {
+                this.activeMenu.printActiveMenu();
+            } else if ("main".equalsIgnoreCase(command)) {
+                this.activeMenu = mainMenu;
+                this.activeMenu.printActiveMenu();
+            } else {
+                this.activeMenu.handle(params, cm -> {
+                    this.activeMenu = cm;
+                    this.activeMenu.printActiveMenu();
+                });
             }
-        }else {
-            System.out.println("Unknown command");
+        } else {
+            LOGGER.warn("Empty command");
         }
     }
 }
