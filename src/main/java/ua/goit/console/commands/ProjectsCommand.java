@@ -7,21 +7,28 @@
 
 package ua.goit.console.commands;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import ua.goit.console.Command;
 import ua.goit.dao.ProjectsDao;
 import ua.goit.model.Projects;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.function.Consumer;
 
 public class ProjectsCommand implements Command {
+
+    private static final Logger LOGGER = LogManager.getLogger(ProjectsCommand.class);
 
     private final ProjectsDao projectsDao = new ProjectsDao();
     SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
 
     @Override
-    public void handle(String params) throws ParseException {
+    public void handle(String params, Consumer<Command> setActive) throws ParseException {
         String[] paramsArray = params.split(" ");
         String subParams = String.join(" "
                 , params.replace(paramsArray[0] + " ", ""));
@@ -99,5 +106,18 @@ public class ProjectsCommand implements Command {
         } else {
             System.out.println("Projects with id " + paramsArray[0] + " not found");
         }
+    }
+
+    @Override
+    public void printActiveMenu() {
+        LOGGER.info("---------------------Projects menu---------------------");
+        LOGGER.info("Projects command list:");
+        LOGGER.info("create [id] [Name_] [language] [cost] [creation_date(format dd-MM-yyyy)]"); // тут також викидає помилку
+        LOGGER.info("get [id]");
+        LOGGER.info("getAll");
+        LOGGER.info("update [id] [Name_] [language] [cost] [creation_date(format dd-MM-yyyy)]");// тут також
+        LOGGER.info("delete [id]");//не можу розибратися update або delete в таблиці "projects"
+                                                // порушує обмеження зовнішнього ключа "projects_id_fk"
+                                                // таблиці "developers_projects"
     }
 }
