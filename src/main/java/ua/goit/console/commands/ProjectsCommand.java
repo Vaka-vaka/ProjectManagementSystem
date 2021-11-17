@@ -25,7 +25,6 @@ public class ProjectsCommand implements Command {
     private static final Logger LOGGER = LogManager.getLogger(ProjectsCommand.class);
 
     private final ProjectsDao projectsDao = new ProjectsDao();
-    SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
 
     @Override
     public void handle(String params, Consumer<Command> setActive) throws ParseException {
@@ -59,7 +58,7 @@ public class ProjectsCommand implements Command {
         }
     }
 
-    private void update(String params) throws ParseException {
+    private void update(String params) {
         String[] paramsArray = params.split(" ");
         Optional<Projects> optionalProjects = projectsDao
                 .get(Long.parseLong(paramsArray[0]));
@@ -68,21 +67,23 @@ public class ProjectsCommand implements Command {
             projects.setName_(paramsArray[1]);
             projects.setLanguage(paramsArray[2]);
             projects.setCost(Integer.parseInt(paramsArray[3]));
-            projects.setCreation_date(new Date(format.parse(paramsArray[4]).getTime()));
+            Date date = new Date(System.currentTimeMillis());
+            projects.setCreation_date(date);
             projectsDao.update(projects);
         } else {
             System.out.println("Projects with id " + paramsArray[0] + " not found");
         }
     }
 
-    private void create(String params) throws ParseException {
+    private void create(String params) {
         String[] paramsArray = params.split(" ");
         Projects projects = new Projects();
         projects.setId(Long.parseLong(paramsArray[0]));
         projects.setName_(paramsArray[1]);
         projects.setLanguage(paramsArray[2]);
         projects.setCost(Integer.parseInt(paramsArray[3]));
-        projects.setCreation_date(new Date(format.parse(paramsArray[4]).getTime()));
+        Date date = new Date(System.currentTimeMillis());
+        projects.setCreation_date(date);
         projectsDao.create(projects);
     }
 
@@ -112,12 +113,10 @@ public class ProjectsCommand implements Command {
     public void printActiveMenu() {
         LOGGER.info("---------------------Projects menu---------------------");
         LOGGER.info("Projects command list:");
-        LOGGER.info("create [id] [Name_] [language] [cost] [creation_date(format dd-MM-yyyy)]"); // тут також викидає помилку
+        LOGGER.info("create [id] [name_] [language] [creation_date(format dd-MM-yyyy)] [cost]");
         LOGGER.info("get [id]");
         LOGGER.info("getAll");
-        LOGGER.info("update [id] [Name_] [language] [cost] [creation_date(format dd-MM-yyyy)]");// тут також
-        LOGGER.info("delete [id]");//не можу розибратися update або delete в таблиці "projects"
-                                                // порушує обмеження зовнішнього ключа "projects_id_fk"
-                                                // таблиці "developers_projects"
+        LOGGER.info("update [id] [name_] [language] [creation_date(format dd-MM-yyyy)] [cost]");
+        LOGGER.info("delete [id]");
     }
 }
