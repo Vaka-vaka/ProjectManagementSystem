@@ -23,11 +23,16 @@ public class Main {
     public static void main(String[] args) throws SQLException, ParseException {
         LOGGER.info("START application");
         DbMigration.migrate();
+
+        runMain();
+        LOGGER.info("END application");
+    }
+
+    public static void runMain() throws SQLException, ParseException {
         CommandHandler commandHandler = new CommandHandler();
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNext()) {
             commandHandler.handleCommand(scanner.nextLine());
         }
-        LOGGER.info("END application");
     }
 }
