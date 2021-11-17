@@ -7,18 +7,23 @@
 
 package ua.goit.console.commands;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import ua.goit.console.Command;
 import ua.goit.dao.SkillsDao;
 import ua.goit.model.Skills;
 
 import java.util.*;
+import java.util.function.Consumer;
 
 public class SkillsCommand implements Command {
+
+    private static final Logger LOGGER = LogManager.getLogger(SkillsCommand.class);
 
     private final SkillsDao skillsDao = new SkillsDao();
 
     @Override
-    public void handle(String params) {
+    public void handle(String params, Consumer<Command> setActive) {
         String[] paramsArray = params.split(" ");
         String subParams = String.join(" "
                 , params.replace(paramsArray[0] + " ", ""));
@@ -92,5 +97,16 @@ public class SkillsCommand implements Command {
         } else {
             System.out.println("Skills with id " + paramsArray[0] + " not found");
         }
+    }
+
+    @Override
+    public void printActiveMenu() {
+        LOGGER.info("---------------------Skills menu---------------------");
+        LOGGER.info("Skills command list:");
+        LOGGER.info("create [id] [language] [level_skills]");
+        LOGGER.info("get [id]");
+        LOGGER.info("getAll");
+        LOGGER.info("update [id] [language] [level_skills]");
+        LOGGER.info("delete [id]");
     }
 }
