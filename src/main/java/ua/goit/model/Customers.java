@@ -7,7 +7,7 @@
 
 package ua.goit.model;
 
-import ua.goit.dao.Identity;
+import ua.goit.dao.to_interface.Identity;
 
 import java.util.Objects;
 
