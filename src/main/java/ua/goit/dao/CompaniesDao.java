@@ -7,6 +7,8 @@
 
 package ua.goit.dao;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import ua.goit.model.Companies;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,6 +16,7 @@ import java.util.Optional;
 
 public class CompaniesDao extends AbstractDao<Companies>{
 
+    private static final Logger LOGGER = LogManager.getLogger(CompaniesDao.class);
 
     @Override
     String getTableName() {
@@ -38,7 +41,7 @@ public class CompaniesDao extends AbstractDao<Companies>{
             ps.setString(2, entity.getName_());
             ps.setString(3, entity.getCity());
         });
-        System.out.println("Created " + count + " records");
+        LOGGER.info("Created " + count + " records");
         return Optional.empty();
     }
 
@@ -50,6 +53,6 @@ public class CompaniesDao extends AbstractDao<Companies>{
             ps.setString(2, entity.getCity());
             ps.setLong(3, entity.getId());
         });
-        System.out.println("Updated " + count + " records");
+        LOGGER.info("Updated " + count + " records");
     }
 }
