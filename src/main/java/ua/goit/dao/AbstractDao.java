@@ -7,13 +7,15 @@
 
 package ua.goit.dao;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 abstract public class AbstractDao<T extends Identity> implements Dao<T> {
+
+    private static final Logger LOGGER = LogManager.getLogger(AbstractDao.class);
 
     abstract String getTableName();
 
@@ -25,7 +27,7 @@ abstract public class AbstractDao<T extends Identity> implements Dao<T> {
         DbHelper.executeWithPreparedStatement(sql, ps -> {
             ps.setLong(1, entity.getId());
         });
-        System.out.println("Deleted records from " + getTableName());
+        LOGGER.debug("Deleted records from " + getTableName());
     }
 
     @Override
@@ -37,7 +39,7 @@ abstract public class AbstractDao<T extends Identity> implements Dao<T> {
                         ps.setLong(1, id);
                     });
             if (resultSet.next()) {
-                System.out.println("Record was selected");
+                LOGGER.debug("Record was selected");
                 return Optional.of(mapToEntity(resultSet));
             } else {
                 return Optional.empty();
@@ -60,7 +62,7 @@ abstract public class AbstractDao<T extends Identity> implements Dao<T> {
                 resultList.add(mapToEntity(resultSet));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error("Get all method exception", e);
         }
         return resultList;
     }
