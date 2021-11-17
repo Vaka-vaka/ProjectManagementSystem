@@ -9,6 +9,9 @@ package ua.goit.dao;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import ua.goit.dao.to_interface.Dao;
+import ua.goit.dao.to_interface.Identity;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
