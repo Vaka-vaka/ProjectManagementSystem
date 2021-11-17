@@ -62,3 +62,9 @@ target/classes/db/migration/V1.0.4__Adding_creation_time_to_projects.sql
 target/classes/db/migration/V1.0.5__Adding_creation_view_to_list_middleDevelopers.sql
 src/main/java/ua/goit/console/commands/PrintInfoCommand.java
 target/classes/db/migration/sum_salary_developers_project.sql
+target/classes/log4j2.xml
+target/classes/db/migration/V1.0.7__Adding_creation_sum_salary_developers_project.sql
+target/classes/db/migration/V1.0.5__Adding_creation_view_to_list_java_developers.sql
+target/classes/db/migration/V1.0.6__Adding_creation_view_to_list_middleDevelopers.sql
+target/classes/db/migration/V1.0.8__Adding_creation_list_projects.sql
+target/classes/db/migration/V1.0.9__Adding_creation_list_developers_project.sql
