@@ -7,19 +7,23 @@
 
 package ua.goit.console.commands;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import ua.goit.console.Command;
 import ua.goit.dao.CompaniesDao;
 import ua.goit.model.Companies;
-
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Consumer;
 
 public class CompaniesCommand implements Command {
+
+    private static final Logger LOGGER = LogManager.getLogger(CompaniesCommand.class);
 
     private final CompaniesDao companiesDao = new CompaniesDao();
 
     @Override
-    public void handle(String params) {
+    public void handle(String params, Consumer<Command> setActive) {
         String[] paramsArray = params.split(" ");
         String subParams = String.join(" "
                 , params.replace(paramsArray[0] + " ", ""));
@@ -93,5 +97,16 @@ public class CompaniesCommand implements Command {
         } else {
             System.out.println("Companies with id " + paramsArray[0] + " not found");
         }
+    }
+
+    @Override
+    public void printActiveMenu() {
+        LOGGER.info("---------------------Companies menu---------------------");
+        LOGGER.info("Companies command list: ");
+        LOGGER.info("create [name_] [city]");
+        LOGGER.info("get [id]");
+        LOGGER.info("getAll");
+        LOGGER.info(" update [name_] [city]");
+        LOGGER.info("delete [id]");
     }
 }
