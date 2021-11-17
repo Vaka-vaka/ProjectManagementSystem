@@ -7,19 +7,24 @@
 
 package ua.goit.console.commands;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import ua.goit.console.Command;
 import ua.goit.dao.DevelopersDao;
 import ua.goit.model.Developers;
 
 import java.util.*;
+import java.util.function.Consumer;
 
 
 public class DevelopersCommand implements Command {
 
+    private static final Logger LOGGER = LogManager.getLogger(DevelopersCommand.class);
+
     private final DevelopersDao developersDao = new DevelopersDao();
 
     @Override
-    public void handle(String params) {
+    public void handle(String params, Consumer<Command> setActive) {
         String[] paramsArray = params.split(" ");
         String subParams = String.join(" "
                 , params.replace(paramsArray[0] + " ", ""));
@@ -68,13 +73,13 @@ public class DevelopersCommand implements Command {
 
     private void create(String params) {
         /** без ID не виходить, кидає помилку сама база SQL
-        * (Error [23505]: ПОМИЛКА: повторювані значення ключа порушують обмеження унікальності "developers_pkey"
-        *  Подробности: Ключ (id)=(1) вже існує.
-        *  ПОМИЛКА: повторювані значення ключа порушують обмеження унікальності "developers_pkey"
-        *  Подробности: Ключ (id)=(1) вже існує.
-        *  ПОМИЛКА: повторювані значення ключа порушують обмеження унікальності "developers_pkey"
-        *  Подробности: Ключ (id)=(1) вже існує.)
-        *автоматично не може призначить ID
+         * (Error [23505]: ПОМИЛКА: повторювані значення ключа порушують обмеження унікальності "developers_pkey"
+         *  Подробности: Ключ (id)=(1) вже існує.
+         *  ПОМИЛКА: повторювані значення ключа порушують обмеження унікальності "developers_pkey"
+         *  Подробности: Ключ (id)=(1) вже існує.
+         *  ПОМИЛКА: повторювані значення ключа порушують обмеження унікальності "developers_pkey"
+         *  Подробности: Ключ (id)=(1) вже існує.)
+         *автоматично не може призначить ID
          */
         String[] paramsArray = params.split(" ");
         Developers developers = new Developers();
@@ -106,5 +111,16 @@ public class DevelopersCommand implements Command {
         } else {
             System.out.println("Developers with id " + paramsArray[0] + " not found");
         }
+    }
+
+    @Override
+    public void printActiveMenu() {
+        LOGGER.info("---------------------Developers menu---------------------");
+        LOGGER.info("Developers command list:");
+        LOGGER.info("create [id] [name_] [age] [gender] [salary]");
+        LOGGER.info("get [id]");
+        LOGGER.info("getAll");
+        LOGGER.info("update [id] [name_] [age] [gender] [salary]");
+        LOGGER.info("delete [id]");
     }
 }
