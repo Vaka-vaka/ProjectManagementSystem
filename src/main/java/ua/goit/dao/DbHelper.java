@@ -7,33 +7,29 @@
 
 package ua.goit.dao;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import ua.goit.config.DataSourceHolder;
-
 import java.sql.*;
 
 public class DbHelper {
 
+    private static final Logger LOGGER = LogManager.getLogger(DbHelper.class);
+
     public static int executeWithPreparedStatement(String sql, ParameterSetter psCall) {
-        Connection connection;
-        try {
-            connection = DataSourceHolder.getDataSource().getConnection();
-            try (PreparedStatement ps = connection.prepareStatement(sql)) {
-                psCall.set(ps);
-                return ps.executeUpdate();
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-                return 0;
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        try (Connection connection = DataSourceHolder.getDataSource().getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            psCall.set(ps);
+            return ps.executeUpdate();
+        } catch (SQLException e) {
+            LOGGER.error("Exception while trying do SQL request", e);
+            return 0;
         }
-       return 0;
     }
 
     public static ResultSet getWithPreparedStatement(String sql, ParameterSetter psCall) throws SQLException {
-        Connection connection;
-        connection = DataSourceHolder.getDataSource().getConnection();
-        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+        try (Connection connection = DataSourceHolder.getDataSource().getConnection();
+                PreparedStatement ps = connection.prepareStatement(sql)) {
             psCall.set(ps);
             return ps.executeQuery();
         }
