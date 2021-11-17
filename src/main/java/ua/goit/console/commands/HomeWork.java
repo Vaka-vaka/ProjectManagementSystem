@@ -7,15 +7,21 @@
 
 package ua.goit.console.commands;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import ua.goit.config.DataSourceHolder;
 import ua.goit.console.Command;
+
 import java.sql.Connection;
 import java.sql.*;
+import java.util.function.Consumer;
 
 public class HomeWork implements Command {
 
+    private static final Logger LOGGER = LogManager.getLogger(HomeWork.class);
+
     @Override
-    public void handle(String params) throws SQLException {
+    public void handle(String params, Consumer<Command> setActive) throws SQLException {
         String[] paramsArray = params.split(" ");
         String subParams = String.join(" "
                 , params.replace(paramsArray[0] + " ", ""));
@@ -26,13 +32,13 @@ public class HomeWork implements Command {
             case "project":
                 getListDevelopersProject();
                 break;
-            case "developers":
+            case "java":
                 getJavaDevelopers();
                 break;
-            case "developer":
+            case "middle":
                 getMiddleDevelopers();
                 break;
-            case "go":
+            case "list":
                 getListDevelopers();
                 break;
         }
@@ -101,5 +107,19 @@ public class HomeWork implements Command {
             System.out.println("Count developer: " + resultSet.getString(1) + " ; ");
         }
         connection.close();
+    }
+
+    @Override
+    public void printActiveMenu() {
+        LOGGER.info("---------------------Home_Work menu---------------------");
+        LOGGER.info("1. Salary (amount) of all developers of a single project:"
+                + " please enter the words - salary.");
+        LOGGER.info("2. List of developers for a single project:" +
+                " please enter the words - project.");
+        LOGGER.info("3. List of all Java developers:" +
+                " please enter the words - java.");
+        LOGGER.info("4. List of all middle developers: " +
+                "please enter the words - middle.");
+        LOGGER.info("5. List of projects: please enter the words - list.");
     }
 }
