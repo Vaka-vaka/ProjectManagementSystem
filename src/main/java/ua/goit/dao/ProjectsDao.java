@@ -7,12 +7,16 @@
 
 package ua.goit.dao;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import ua.goit.model.Projects;
 import java.sql.*;
 import java.sql.Date;
 import java.util.*;
 
 public class ProjectsDao extends AbstractDao<Projects> {
+
+    private static final Logger LOGGER = LogManager.getLogger(ProjectsDao.class);
 
     @Override
     String getTableName() {
@@ -41,7 +45,7 @@ public class ProjectsDao extends AbstractDao<Projects> {
             ps.setInt(4, entity.getCost());
             ps.setDate(5, (Date) entity.getCreation_date());
         });
-        System.out.println("Created " + count + " records");
+        LOGGER.info("Created " + count + " records");
         return Optional.empty();
     }
 
@@ -56,6 +60,6 @@ public class ProjectsDao extends AbstractDao<Projects> {
             ps.setDate(4, (Date) entity.getCreation_date());
             ps.setLong(5, entity.getId());
         });
-        System.out.println("Updated " + count + " records");
+        LOGGER.info("Updated " + count + " records");
     }
 }
