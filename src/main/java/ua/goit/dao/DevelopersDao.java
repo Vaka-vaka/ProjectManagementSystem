@@ -7,12 +7,15 @@
 
 package ua.goit.dao;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import ua.goit.model.Developers;
-
 import java.sql.*;
 import java.util.*;
 
 public class DevelopersDao extends AbstractDao<Developers> {
+
+    private static final Logger LOGGER = LogManager.getLogger(DevelopersDao.class);
 
     @Override
     String getTableName() {
@@ -40,7 +43,7 @@ public class DevelopersDao extends AbstractDao<Developers> {
             ps.setString(4, entity.getGender());
             ps.setInt(5, entity.getSalary());
         });
-        System.out.println("Created " + count + " records");
+        LOGGER.info("Created " + count + " records");
         return Optional.empty();
     }
 
@@ -55,6 +58,6 @@ public class DevelopersDao extends AbstractDao<Developers> {
             ps.setInt(4, entity.getSalary());
             ps.setLong(5, entity.getId());
         });
-        System.out.println("Updated " + count + " records");
+        LOGGER.info("Updated " + count + " records");
     }
 }
