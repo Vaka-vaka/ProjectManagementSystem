@@ -7,11 +7,16 @@
 
 package ua.goit.dao;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import ua.goit.model.Skills;
+
 import java.sql.*;
 import java.util.*;
 
 public class SkillsDao extends AbstractDao<Skills> {
+
+    private static final Logger LOGGER = LogManager.getLogger(SkillsDao.class);
 
     @Override
     String getTableName() {
@@ -35,7 +40,7 @@ public class SkillsDao extends AbstractDao<Skills> {
             ps.setString(2, entity.getLanguage());
             ps.setString(3, entity.getLevel_skills());
         });
-        System.out.println("Created " + count + " records");
+        LOGGER.info("Created " + count + " records");
         return Optional.empty();
     }
 
@@ -47,6 +52,6 @@ public class SkillsDao extends AbstractDao<Skills> {
             ps.setString(2, entity.getLevel_skills());
             ps.setLong(3, entity.getId());
         });
-        System.out.println("Updated " + count + " records");
+        LOGGER.info("Updated " + count + " records");
     }
 }
