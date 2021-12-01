@@ -111,7 +111,7 @@ public class HomeWork implements Command {
 
     @Override
     public void printActiveMenu() {
-        LOGGER.info("---------------------Home_Work menu---------------------");
+        LOGGER.info("---------------------home_work menu---------------------");
         LOGGER.info("1. Salary (amount) of all developers of a single project:"
                 + " please enter the words - salary.");
         LOGGER.info("2. List of developers for a single project:" +
